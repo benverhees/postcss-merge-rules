@@ -257,6 +257,12 @@ test(
 );
 
 test(
+    'should not merge single-colon and double-colon syntax for pseudo-elements',
+    testOutput,
+    'code :-ms-input-placeholder{color:red}code ::-ms-input-placeholder{color:red}'
+);
+
+test(
     'should merge text-* properties',
     testOutput,
     'h1{color:red;text-align:right;text-decoration:underline}h2{text-align:right;text-decoration:underline}',

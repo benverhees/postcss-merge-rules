@@ -21,6 +21,11 @@ function sameVendor (selectorsA, selectorsB) {
     return same(selectorsA) === same(selectorsB);
 }
 
+function sameColons (selectorsA, selectorsB) {
+    let count = selectors => selectors.map(selector => selector.split(':').length - 1).reduce((a, b) => a + b, 0);
+    return count(selectorsA) === count(selectorsB);
+}
+
 const noVendor = selector => !filterPrefixes(selector).length;
 
 function sameParent (ruleA, ruleB) {
@@ -50,7 +55,7 @@ function canMerge (ruleA, ruleB, browsers, compatibilityCache) {
     if (parent && name && ~name.indexOf('keyframes')) {
         return false;
     }
-    return parent && (selectors.every(noVendor) || sameVendor(a, b));
+    return parent && (selectors.every(noVendor) || (sameVendor(a, b) && sameColons(a, b)));
 }
 
 const getDecls = rule => rule.nodes ? rule.nodes.map(String) : [];
