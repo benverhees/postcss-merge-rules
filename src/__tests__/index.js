@@ -259,7 +259,7 @@ test(
 test(
     'should not merge single-colon and double-colon syntax for pseudo-elements',
     testOutput,
-    'code :-ms-input-placeholder{color:red}code ::-ms-input-placeholder{color:red}'
+    'input:-ms-input-placeholder{color:red}input::-ms-input-placeholder{color:red}'
 );
 
 test(
